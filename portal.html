@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Portal - SA Compliance Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="portal-styles.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="auth-page">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <svg width="48" height="48" viewBox="0 0 40 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="#0EA5E9"/>
+                        <path d="M12 20L18 26L28 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h1>Welcome Back</h1>
+                    <p>Log in to access your compliance tracker</p>
+                </div>
+                
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" name="email" required placeholder="doctor@practice.co.za">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" name="password" required placeholder="Enter your password">
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox">
+                            <input type="checkbox" name="remember">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="link" onclick="showForgotPassword(); return false;">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Log In</button>
+                    
+                    <div class="auth-footer">
+                        <p>Don't have an account? <a href="#" onclick="showRegister(); return false;" class="link">Sign up</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Page -->
+    <div id="registerPage" class="auth-page" style="display:none;">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <svg width="48" height="48" viewBox="0 0 40 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="#0EA5E9"/>
+                        <path d="M12 20L18 26L28 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h1>Create Account</h1>
+                    <p>Start your compliance journey today</p>
+                </div>
+                
+                <form id="registerForm" class="auth-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="regFirstName">First Name</label>
+                            <input type="text" id="regFirstName" name="firstName" required placeholder="Dr. Jane">
+                        </div>
+                        <div class="form-group">
+                            <label for="regLastName">Last Name</label>
+                            <input type="text" id="regLastName" name="lastName" required placeholder="Smith">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regEmail">Email Address</label>
+                        <input type="email" id="regEmail" name="email" required placeholder="doctor@practice.co.za">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regPractice">Practice Name</label>
+                        <input type="text" id="regPractice" name="practice" required placeholder="Smith Family Practice">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regPhone">Phone Number</label>
+                        <input type="tel" id="regPhone" name="phone" required placeholder="082 123 4567">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="regPassword">Password</label>
+                            <input type="password" id="regPassword" name="password" required placeholder="Min. 8 characters">
+                        </div>
+                        <div class="form-group">
+                            <label for="regConfirmPassword">Confirm Password</label>
+                            <input type="password" id="regConfirmPassword" name="confirmPassword" required placeholder="Re-enter password">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regPackage">Package Purchased</label>
+                        <select id="regPackage" name="package" required>
+                            <option value="">Select your package</option>
+                            <option value="essential">Essential - R999</option>
+                            <option value="professional">Professional - R1,499</option>
+                            <option value="enterprise">Enterprise - R2,999</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regOrderNumber">Order/Payment Reference</label>
+                        <input type="text" id="regOrderNumber" name="orderNumber" required placeholder="e.g., TRACKER-SMITH or Invoice #123">
+                        <small>This helps us verify your purchase</small>
+                    </div>
+                    
+                    <label class="checkbox">
+                        <input type="checkbox" name="terms" required>
+                        <span>I agree to the <a href="#" class="link">Terms of Service</a> and <a href="#" class="link">Privacy Policy</a></span>
+                    </label>
+                    
+                    <button type="submit" class="btn-primary">Create Account</button>
+                    
+                    <div class="auth-footer">
+                        <p>Already have an account? <a href="#" onclick="showLogin(); return false;" class="link">Log in</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Page -->
+    <div id="forgotPasswordPage" class="auth-page" style="display:none;">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h1>Reset Password</h1>
+                    <p>Enter your email to receive reset instructions</p>
+                </div>
+                
+                <form id="forgotPasswordForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="forgotEmail">Email Address</label>
+                        <input type="email" id="forgotEmail" name="email" required placeholder="doctor@practice.co.za">
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Send Reset Link</button>
+                    
+                    <div class="auth-footer">
+                        <p><a href="#" onclick="showLogin(); return false;" class="link">← Back to login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Dashboard (shown after login) -->
+    <div id="dashboard" style="display:none;">
+        <nav class="dashboard-nav">
+            <div class="nav-brand">
+                <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#0EA5E9"/>
+                    <path d="M12 20L18 26L28 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>SA Compliance Tracker</span>
+            </div>
+            <div class="nav-user">
+                <span id="userName">Dr. Smith</span>
+                <button onclick="logout()" class="btn-logout">Logout</button>
+            </div>
+        </nav>
+
+        <div class="dashboard-container">
+            <div class="dashboard-sidebar">
+                <ul class="sidebar-menu">
+                    <li class="active" onclick="showSection('overview')">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+                        <span>Overview</span>
+                    </li>
+                    <li onclick="showSection('downloads')">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                        <span>Downloads</span>
+                    </li>
+                    <li onclick="showSection('support')">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+                        <span>Support</span>
+                    </li>
+                    <li onclick="showSection('account')">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
+                        <span>Account</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="dashboard-content">
+                <!-- Overview Section -->
+                <div id="overviewSection" class="content-section">
+                    <h2>Welcome back, <span id="userName2">Dr. Smith</span>! 👋</h2>
+                    <p class="subtitle">Here's your compliance tracker dashboard</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #DBEAFE;">📊</div>
+                            <div>
+                                <div class="stat-label">Package</div>
+                                <div class="stat-value" id="userPackage">Professional</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #D1FAE5;">✅</div>
+                            <div>
+                                <div class="stat-label">Account Status</div>
+                                <div class="stat-value">Active</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #FEF3C7;">📅</div>
+                            <div>
+                                <div class="stat-label">Member Since</div>
+                                <div class="stat-value" id="memberSince">Jan 2026</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-actions">
+                        <h3>Quick Actions</h3>
+                        <div class="action-grid">
+                            <button class="action-card" onclick="showSection('downloads')">
+                                <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                                <span>Download Tracker</span>
+                            </button>
+                            <button class="action-card" onclick="showSection('support')">
+                                <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.668 2.754l-1.524-1.525a3.997 3.997 0 00.078-2.183l1.562-1.562C15.802 8.249 16 9.1 16 10zm-5.165 3.913l1.58 1.58A5.98 5.98 0 0110 16a5.976 5.976 0 01-2.516-.552l1.562-1.562a4.006 4.006 0 001.789.027zm-4.677-2.796a4.002 4.002 0 01-.041-2.08l-.08.08-1.53-1.533A5.98 5.98 0 004 10c0 .954.223 1.856.619 2.657l1.54-1.54zm1.088-6.45A5.974 5.974 0 0110 4c.954 0 1.856.223 2.657.619l-1.54 1.54a4.002 4.002 0 00-2.346.033L7.246 4.668zM12 10a2 2 0 11-4 0 2 2 0 014 0z" clip-rule="evenodd"/></svg>
+                                <span>Get Support</span>
+                            </button>
+                            <button class="action-card" onclick="openVideoTutorial()">
+                                <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
+                                <span>Watch Tutorials</span>
+                            </button>
+                            <button class="action-card" onclick="showSection('account')">
+                                <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/></svg>
+                                <span>Account Settings</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>🎯 Getting Started</h3>
+                        <ol>
+                            <li>Download the Excel tracker from the Downloads tab</li>
+                            <li>Upload to Google Drive and open with Google Sheets</li>
+                            <li>Follow the setup guide in the documentation</li>
+                            <li>Watch our video tutorials for step-by-step help</li>
+                            <li>Need help? Contact support anytime!</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Downloads Section -->
+                <div id="downloadsSection" class="content-section" style="display:none;">
+                    <h2>Downloads</h2>
+                    <p class="subtitle">Access all your compliance tracker files</p>
+
+                    <div class="download-grid">
+                        <div class="download-card">
+                            <div class="download-icon">📊</div>
+                            <h3>SA Dispensary Compliance Tracker</h3>
+                            <p>Complete Excel tracker with 3,400+ formulas, barcode integration, and automated calculations</p>
+                            <div class="download-meta">
+                                <span>Version 1.0</span>
+                                <span>•</span>
+                                <span>2.5 MB</span>
+                            </div>
+                            <button class="btn-download" onclick="downloadFile('tracker')">
+                                <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                                Download
+                            </button>
+                        </div>
+
+                        <div class="download-card">
+                            <div class="download-icon">📚</div>
+                            <h3>Complete Documentation Package</h3>
+                            <p>140+ pages: User Guide, Barcode Guide, Formula Reference, Apps Script Guide</p>
+                            <div class="download-meta">
+                                <span>4 PDF files</span>
+                                <span>•</span>
+                                <span>8.2 MB</span>
+                            </div>
+                            <button class="btn-download" onclick="downloadFile('documentation')">
+                                <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                                Download All
+                            </button>
+                        </div>
+
+                        <div class="download-card">
+                            <div class="download-icon">⚙️</div>
+                            <h3>Google Apps Script Automation</h3>
+                            <p>500+ lines of code for auto-timestamp, expiry alerts, and automated reports</p>
+                            <div class="download-meta">
+                                <span>JavaScript file</span>
+                                <span>•</span>
+                                <span>45 KB</span>
+                            </div>
+                            <button class="btn-download" onclick="downloadFile('script')">
+                                <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                                Download
+                            </button>
+                        </div>
+
+                        <div class="download-card premium">
+                            <div class="download-icon">📹</div>
+                            <h3>Video Tutorial Library</h3>
+                            <p>Step-by-step video guides for setup, barcode scanning, S5/S6 register, and more</p>
+                            <div class="download-meta">
+                                <span>12 videos</span>
+                                <span>•</span>
+                                <span>Online access</span>
+                            </div>
+                            <button class="btn-download" onclick="openVideoTutorial()">
+                                <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
+                                Watch Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>💡 Installation Tip</h3>
+                        <p><strong>Recommended:</strong> Upload the Excel tracker to Google Drive and open with Google Sheets for best performance and automatic syncing across devices.</p>
+                    </div>
+                </div>
+
+                <!-- Support Section -->
+                <div id="supportSection" class="content-section" style="display:none;">
+                    <h2>Support & Help</h2>
+                    <p class="subtitle">We're here to help you stay compliant</p>
+
+                    <div class="support-grid">
+                        <div class="support-card">
+                            <h3>📧 Email Support</h3>
+                            <p>Get help via email</p>
+                            <p><strong>support@sacompliancetracker.co.za</strong></p>
+                            <p class="support-meta">Response time: <span class="badge badge-green" id="supportResponseTime">24-48 hours</span></p>
+                            <a href="mailto:support@sacompliancetracker.co.za" class="btn-secondary">Send Email</a>
+                        </div>
+
+                        <div class="support-card">
+                            <h3>📱 WhatsApp Support</h3>
+                            <p>Quick questions? Message us</p>
+                            <p><strong>+27 82 XXX XXXX</strong></p>
+                            <p class="support-meta">Available: <span class="badge badge-blue">Mon-Fri 8AM-5PM</span></p>
+                            <a href="https://wa.me/27821234567" class="btn-secondary" target="_blank">Chat on WhatsApp</a>
+                        </div>
+                    </div>
+
+                    <div class="faq-section">
+                        <h3>Frequently Asked Questions</h3>
+                        
+                        <div class="faq-item">
+                            <h4>How do I install the tracker?</h4>
+                            <p>1. Download the Excel file from Downloads tab<br>
+                               2. Upload to Google Drive<br>
+                               3. Right-click → Open with Google Sheets<br>
+                               4. Follow the setup guide in the documentation</p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4>Can I use this offline?</h4>
+                            <p>Yes! Download the Excel file and use it in Microsoft Excel (Windows/Mac). For best results and automation features, we recommend Google Sheets which works offline after initial setup.</p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4>How do I add the Apps Script automation?</h4>
+                            <p>Open your tracker in Google Sheets → Extensions → Apps Script → Copy/paste our script → Save. Full instructions in the Apps Script Guide (Downloads tab).</p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4>Do I need a barcode scanner?</h4>
+                            <p>No, barcodes are optional. The tracker works great with manual entry. If you want scanning, we recommend the Zebra DS2208 (R1,500) which plugs into USB and works instantly.</p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4>Will this work for my multi-doctor practice?</h4>
+                            <p>Yes! Multiple users can access the same Google Sheet. For Enterprise package users, we can help set up proper access controls and user permissions.</p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4>How do I get updates?</h4>
+                            <p>Updates are included for 6 months (Essential), 1 year (Professional/Enterprise). We'll email you when updates are available. Consider our annual support plan for lifetime updates.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Section -->
+                <div id="accountSection" class="content-section" style="display:none;">
+                    <h2>Account Settings</h2>
+                    <p class="subtitle">Manage your account and subscription</p>
+
+                    <div class="account-grid">
+                        <div class="account-card">
+                            <h3>Account Information</h3>
+                            <div class="info-row">
+                                <span class="label">Name:</span>
+                                <span class="value" id="accountName">Dr. Jane Smith</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Email:</span>
+                                <span class="value" id="accountEmail">jane@practice.co.za</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Practice:</span>
+                                <span class="value" id="accountPractice">Smith Family Practice</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Phone:</span>
+                                <span class="value" id="accountPhone">082 123 4567</span>
+                            </div>
+                            <button class="btn-secondary" onclick="editAccount()">Edit Information</button>
+                        </div>
+
+                        <div class="account-card">
+                            <h3>Subscription</h3>
+                            <div class="info-row">
+                                <span class="label">Package:</span>
+                                <span class="value" id="accountPackage">Professional</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Status:</span>
+                                <span class="badge badge-green">Active</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Purchase Date:</span>
+                                <span class="value" id="accountPurchaseDate">15 Jan 2026</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Support Until:</span>
+                                <span class="value" id="accountSupportUntil">15 Jan 2027</span>
+                            </div>
+                            <button class="btn-primary" onclick="upgradePackage()">Upgrade Package</button>
+                        </div>
+                    </div>
+
+                    <div class="upgrade-section">
+                        <h3>Annual Support Plans</h3>
+                        <p>Extend your support and get unlimited updates</p>
+                        
+                        <div class="plans-grid">
+                            <div class="plan-card">
+                                <h4>Maintenance Plan</h4>
+                                <div class="plan-price">R299<span>/year</span></div>
+                                <ul>
+                                    <li>✅ Unlimited email support</li>
+                                    <li>✅ All software updates</li>
+                                    <li>✅ Regulatory updates</li>
+                                    <li>✅ Video library access</li>
+                                </ul>
+                                <button class="btn-outline">Subscribe</button>
+                            </div>
+
+                            <div class="plan-card featured">
+                                <div class="plan-badge">Most Popular</div>
+                                <h4>Premium Plan</h4>
+                                <div class="plan-price">R599<span>/year</span></div>
+                                <ul>
+                                    <li>✅ Everything in Maintenance</li>
+                                    <li>✅ Priority support (24hr)</li>
+                                    <li>✅ Quarterly check-ins</li>
+                                    <li>✅ Early access features</li>
+                                </ul>
+                                <button class="btn-primary">Subscribe</button>
+                            </div>
+
+                            <div class="plan-card">
+                                <h4>Audit Plan</h4>
+                                <div class="plan-price">R1,499<span>/year</span></div>
+                                <ul>
+                                    <li>✅ Everything in Premium</li>
+                                    <li>✅ Annual on-site audit</li>
+                                    <li>✅ Inspector prep session</li>
+                                    <li>✅ Direct phone support</li>
+                                </ul>
+                                <button class="btn-outline">Subscribe</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="security-section">
+                        <h3>Security</h3>
+                        <button class="btn-secondary" onclick="changePassword()">Change Password</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="portal-script.js"></script>
+</body>
+</html>
